@@ -48,6 +48,18 @@
 
       <nav class="bottom-nav" aria-label="Navegación principal"><a class="active" href="#inicio">⌂<span>Inicio</span></a><a href="#leccion">▣<span>Aprender</span></a><a href="#progreso">◔<span>Progreso</span></a><a href="#perfil">○<span>Perfil</span></a></nav>
     </main>
+    <div class="lesson-modal" id="lessonModal" aria-hidden="true">
+      <div class="modal-backdrop" data-close-lesson></div>
+      <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="lessonTitle">
+        <button class="close-button" data-close-lesson aria-label="Cerrar lección">×</button>
+        <p class="eyebrow">Lección 1 · Escucha y comprende</p>
+        <h2 id="lessonTitle">En una cafetería</h2>
+        <p class="modal-intro">Escucha el diálogo y elige qué pide la persona.</p>
+        <div class="dialogue"><p><strong>Barista:</strong> Hi! What can I get for you?</p><p><strong>You:</strong> I’d like a medium latte with oat milk, please.</p><p><strong>Barista:</strong> Sure. Would you like anything else?</p></div>
+        <button class="audio-button" id="listenDialogue">▶ Escuchar diálogo</button>
+        <div class="quiz"><p class="quiz-question">What does the customer order?</p><div class="quiz-options"><button data-answer="wrong">A small tea</button><button data-answer="correct">A medium latte</button><button data-answer="wrong">A large coffee</button></div><p class="quiz-feedback" id="quizFeedback" aria-live="polite"></p></div>
+      </section>
+    </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="app.js"></script>
   </body>

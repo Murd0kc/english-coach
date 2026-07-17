@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="English Coach: inglés práctico para hispanohablantes." />
+    <title>English Coach</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#inicio" aria-label="English Coach inicio">
+          <span class="brand-mark">EC</span>
+          <span>English Coach</span>
+        </a>
+        <div class="streak" aria-label="Racha actual">
+          <span>🔥</span><strong>4</strong> días
+        </div>
+      </header>
+
+      <section id="inicio" class="hero">
+        <div>
+          <p class="eyebrow">Tu práctica de hoy</p>
+          <h1>Habla inglés con más confianza.</h1>
+          <p class="hero-copy">Lecciones cortas, situaciones reales y repasos diseñados para hispanohablantes.</p>
+          <button class="primary-button" id="startLesson">Continuar lección <span>→</span></button>
+        </div>
+        <div class="hero-orbit" aria-hidden="true"><span>hello</span><span>hola</span><span>ready?</span></div>
+      </section>
+
+      <section class="progress-card" aria-label="Progreso de la semana">
+        <div class="section-heading"><div><p class="eyebrow">Esta semana</p><h2>Tu progreso</h2></div><span class="progress-value">32%</span></div>
+        <div class="progress-track"><span style="width: 32%"></span></div>
+        <div class="progress-meta"><span>2 de 6 sesiones</span><span>10 min restantes</span></div>
+      </section>
+
+      <section class="lesson-section" id="leccion">
+        <div class="section-heading"><div><p class="eyebrow">Ruta A1 · Unidad 1</p><h2>Primeras conversaciones</h2></div><button class="text-button">Ver ruta</button></div>
+        <article class="lesson-card">
+          <div class="lesson-icon">☕</div>
+          <div class="lesson-content"><span class="lesson-label">Lección recomendada · 8 min</span><h3>En una cafetería</h3><p>Aprende a pedir una bebida de forma natural.</p><div class="lesson-tags"><span>Escucha</span><span>Habla</span><span>Vocabulario</span></div></div>
+          <button class="play-button" id="playLesson" aria-label="Comenzar lección">▶</button>
+        </article>
+      </section>
+
+      <section class="review-card"><div class="review-illustration">↻</div><div><p class="eyebrow">Repaso inteligente</p><h3>5 expresiones están listas</h3><p>Repásalas ahora para recordarlas cuando las necesites.</p></div><button class="secondary-button" id="reviewWords">Repasar</button></section>
+
+      <nav class="bottom-nav" aria-label="Navegación principal"><a class="active" href="#inicio">⌂<span>Inicio</span></a><a href="#leccion">▣<span>Aprender</span></a><a href="#progreso">◔<span>Progreso</span></a><a href="#perfil">○<span>Perfil</span></a></nav>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

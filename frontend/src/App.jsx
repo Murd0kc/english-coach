@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { LearningPath } from './features/learning/components/LearningPath';
+import { LessonDetail } from './features/learning/components/LessonDetail';
 import './App.css';
 
 function App() {
+  const [selectedLessonId, setSelectedLessonId] = useState(null);
   return (
     <main className="app-shell">
       <header className="topbar">
@@ -35,7 +38,7 @@ function App() {
         <div className="progress-meta"><span>2 de 6 sesiones</span><span>10 min restantes</span></div>
       </section>
 
-      <LearningPath />
+      {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
 
       <nav className="bottom-nav" aria-label="Navegación principal">
         <a className="active" href="#inicio">⌂<span>Inicio</span></a>

@@ -36,3 +36,20 @@ export async function getLearningPath() {
       .sort((a, b) => a.sort_order - b.sort_order),
   }));
 }
+
+export async function getLessonById(lessonId) {
+  const { data, error } = await supabase
+    .from('lessons')
+    .select(`id, title, description, duration_minutes, lesson_blocks (id, block_type, content, sort_order), exercises (id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order, exercise_options (id, option_text, is_correct, sort_order))`)
+    .eq('id', lessonId)
+    .eq('is_published', true)
+    .single();
+
+  if (error) throw new Error(`No se pudo cargar la lección: ${error.message}`);
+
+  return {
+    ...data,
+    lesson_blocks: [...(data.lesson_blocks ?? [])].sort((a, b) => a.sort_order - b.sort_order),
+    exercises: [...(data.exercises ?? [])].sort((a, b) => a.sort_order - b.sort_order),
+  };
+}

@@ -1,0 +1,14 @@
+services:
+  english-coach-app:
+    build:
+      context: ../../frontend
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
+        VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
+    restart: unless-stopped
+    networks:
+      - web
+
+networks:
+  web:
+    external: true

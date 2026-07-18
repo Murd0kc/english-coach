@@ -36,3 +36,23 @@ create policy "Content admins can create lessons" on public.lessons
 drop policy if exists "Content admins can update lessons" on public.lessons;
 create policy "Content admins can update lessons" on public.lessons
   for update using (public.is_content_admin()) with check (public.is_content_admin());
+
+drop policy if exists "Content admins can create lesson blocks" on public.lesson_blocks;
+create policy "Content admins can create lesson blocks" on public.lesson_blocks
+  for insert with check (public.is_content_admin());
+
+drop policy if exists "Content admins can update lesson blocks" on public.lesson_blocks;
+create policy "Content admins can update lesson blocks" on public.lesson_blocks
+  for update using (public.is_content_admin()) with check (public.is_content_admin());
+
+drop policy if exists "Content admins can create exercises" on public.exercises;
+create policy "Content admins can create exercises" on public.exercises
+  for insert with check (public.is_content_admin());
+
+drop policy if exists "Content admins can update exercises" on public.exercises;
+create policy "Content admins can update exercises" on public.exercises
+  for update using (public.is_content_admin()) with check (public.is_content_admin());
+
+drop policy if exists "Content admins can create exercise options" on public.exercise_options;
+create policy "Content admins can create exercise options" on public.exercise_options
+  for insert with check (public.is_content_admin());

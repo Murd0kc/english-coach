@@ -1,10 +1,16 @@
 import { useState } from 'react';
+import { AuthPanel } from './features/auth/components/AuthPanel';
+import { useAuth } from './features/auth/hooks/useAuth';
 import { LearningPath } from './features/learning/components/LearningPath';
 import { LessonDetail } from './features/learning/components/LessonDetail';
 import './App.css';
 
 function App() {
   const [selectedLessonId, setSelectedLessonId] = useState(null);
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) return <main className="app-shell"><p>Cargando tu cuenta...</p></main>;
+  if (!user) return <main className="app-shell"><AuthPanel /></main>;
   return (
     <main className="app-shell">
       <header className="topbar">

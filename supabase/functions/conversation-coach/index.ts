@@ -31,7 +31,12 @@ Deno.serve(async (request) => {
     });
     if (!response.ok) throw new Error(`OpenAI request failed with status ${response.status}.`);
     const result = await response.json();
-    const output = result.output_text ?? '';
+    const output = result.output_text ?? (result.output ?? [])
+      .flatMap((item: { content?: Array<{ type?: string; text?: string }> }) => item.content ?? [])
+      .filter((part: { type?: string; text?: string }) => part.type === 'output_text' && part.text)
+      .map((part: { text?: string }) => part.text)
+      .join('\n');
+    if (!output) throw new Error('OpenAI returned an empty response.');
     const match = output.match(/<!--CORRECTION:(.*?)-->/);
     const correction = match ? JSON.parse(match[1]) : null;
     const reply = output.replace(/<!--CORRECTION:.*?-->/, '').trim();

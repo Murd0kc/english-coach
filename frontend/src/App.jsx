@@ -3,6 +3,7 @@ import { AuthPanel } from './features/auth/components/AuthPanel';
 import { useAuth } from './features/auth/hooks/useAuth';
 import { LearningPath } from './features/learning/components/LearningPath';
 import { LessonDetail } from './features/learning/components/LessonDetail';
+import { ProgressSummary } from './features/progress/components/ProgressSummary';
 import './App.css';
 
 function App() {
@@ -36,12 +37,7 @@ function App() {
       </section>
 
       <section className="progress-card">
-        <div className="section-heading">
-          <div><p className="eyebrow">Esta semana</p><h2>Tu progreso</h2></div>
-          <strong className="progress-value">32%</strong>
-        </div>
-        <div className="progress-track"><span style={{ width: '32%' }} /></div>
-        <div className="progress-meta"><span>2 de 6 sesiones</span><span>10 min restantes</span></div>
+        <ProgressSummary />
       </section>
 
       {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}

@@ -1,45 +1,48 @@
-import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabase';
+import { LearningPath } from './features/learning/components/LearningPath';
+import './App.css';
 
 function App() {
-  const [levels, setLevels] = useState([]);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    async function loadLevels() {
-      const { data, error } = await supabase
-        .from('levels')
-        .select('code, name, description')
-        .order('sort_order');
-
-      if (error) {
-        setError(error.message);
-        return;
-      }
-
-      setLevels(data);
-    }
-
-    loadLevels();
-  }, []);
-
   return (
-    <main style={{ padding: '2rem', fontFamily: 'system-ui' }}>
-      <p>English Coach</p>
-      <h1>Tu ruta de inglés</h1>
+    <main className="app-shell">
+      <header className="topbar">
+        <a className="brand" href="/" aria-label="English Coach inicio">
+          <span className="brand-mark">EC</span>
+          <span>English Coach</span>
+        </a>
+        <div className="streak">🔥 <strong>4</strong> días</div>
+      </header>
 
-      {error && <p style={{ color: 'crimson' }}>{error}</p>}
-
-      {levels.length === 0 && !error && <p>Cargando niveles...</p>}
-
-      <section>
-        {levels.map((level) => (
-          <article key={level.code}>
-            <h2>{level.code} · {level.name}</h2>
-            <p>{level.description}</p>
-          </article>
-        ))}
+      <section className="hero-panel">
+        <div>
+          <p className="eyebrow">Tu práctica de hoy</p>
+          <h1>Habla inglés con más confianza.</h1>
+          <p className="hero-copy">
+            Lecciones cortas, situaciones reales y repasos diseñados para hispanohablantes.
+          </p>
+          <button className="primary-button" type="button">Continuar lección <span>→</span></button>
+        </div>
+        <div className="hero-orbit" aria-hidden="true">
+          <span>hello</span><span>hola</span><span>ready?</span>
+        </div>
       </section>
+
+      <section className="progress-card">
+        <div className="section-heading">
+          <div><p className="eyebrow">Esta semana</p><h2>Tu progreso</h2></div>
+          <strong className="progress-value">32%</strong>
+        </div>
+        <div className="progress-track"><span style={{ width: '32%' }} /></div>
+        <div className="progress-meta"><span>2 de 6 sesiones</span><span>10 min restantes</span></div>
+      </section>
+
+      <LearningPath />
+
+      <nav className="bottom-nav" aria-label="Navegación principal">
+        <a className="active" href="#inicio">⌂<span>Inicio</span></a>
+        <a href="#ruta">▣<span>Aprender</span></a>
+        <a href="#progreso">◔<span>Progreso</span></a>
+        <a href="#perfil">○<span>Perfil</span></a>
+      </nav>
     </main>
   );
 }

@@ -13,6 +13,7 @@ import { ConversationCoach } from './features/conversation/components/Conversati
 import { PronunciationCoach } from './features/pronunciation/components/PronunciationCoach';
 import { ConsistencyBadge } from './features/motivation/components/ConsistencyBadge';
 import { UnitAssessment } from './features/assessment/components/UnitAssessment';
+import { SkillProfile } from './features/progress/components/SkillProfile';
 import './App.css';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
       <section className="progress-card">
         <ProgressSummary key={progressVersion} />
       </section>
+      <SkillProfile diagnostic={diagnostic} />
 
       <ReviewSummary />
       <ConversationCoach levelCode={diagnostic?.overall_level ?? 'A1'} />

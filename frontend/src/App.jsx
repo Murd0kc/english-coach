@@ -10,6 +10,7 @@ import { useDiagnostic } from './features/assessment/hooks/useDiagnostic';
 import { DiagnosticPanel } from './features/assessment/components/DiagnosticPanel';
 import { ContentAdminPanel } from './features/content/components/ContentAdminPanel';
 import { ConversationCoach } from './features/conversation/components/ConversationCoach';
+import { PronunciationCoach } from './features/pronunciation/components/PronunciationCoach';
 import './App.css';
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
 
       <ReviewSummary />
       <ConversationCoach levelCode={diagnostic?.overall_level ?? 'A1'} />
+      <PronunciationCoach />
       <ContentAdminPanel userId={user.id} />
 
       {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}

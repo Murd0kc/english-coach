@@ -16,6 +16,7 @@ import { UnitAssessment } from './features/assessment/components/UnitAssessment'
 import { SkillProfile } from './features/progress/components/SkillProfile';
 import { ContentAnalyticsPanel } from './features/content/components/ContentAnalyticsPanel';
 import { RecommendationPanel } from './features/learning/components/RecommendationPanel';
+import { WeeklyGoal } from './features/motivation/components/WeeklyGoal';
 import './App.css';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
       </section>
       <SkillProfile diagnostic={diagnostic} />
       <RecommendationPanel diagnostic={diagnostic} onSelectLesson={setSelectedLessonId} />
+      <WeeklyGoal />
 
       <ReviewSummary />
       <ConversationCoach levelCode={diagnostic?.overall_level ?? 'A1'} />

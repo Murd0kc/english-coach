@@ -1,4 +1,5 @@
 import { supabase } from '../../../lib/supabase';
+import { recordDailyActivity } from '../../motivation/services/activityService';
 
 export async function getLearningPath() {
   const { data, error } = await supabase
@@ -93,6 +94,7 @@ export async function recordAnswer(exerciseId, answer, isCorrect) {
     }, { onConflict: 'user_id,lesson_id' });
 
   if (progressError) throw new Error(`No se pudo guardar el progreso: ${progressError.message}`);
+  await recordDailyActivity({ exercisesAnswered: 1 });
 
   if (!isCorrect) {
     await supabase.from('review_cards').insert({

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { completeLesson } from '../services/learningService';
+import { recordDailyActivity } from '../../motivation/services/activityService';
 import { useLesson } from '../hooks/useLesson';
 import { ExerciseCard } from './ExerciseCard';
 import './LessonDetail.css';
@@ -20,6 +21,7 @@ export function LessonDetail({ lessonId, onBack, onCompleted }) {
     setIsCompleting(true);
     try {
       await completeLesson(lesson.id);
+      await recordDailyActivity({ lessonsCompleted: 1, minutes: lesson.duration_minutes });
       setCompletionMessage('¡Lección completada! Tu progreso ya está guardado.');
       setIsCompleted(true);
       onCompleted?.();

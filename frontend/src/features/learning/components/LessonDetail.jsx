@@ -1,4 +1,5 @@
 import { useLesson } from '../hooks/useLesson';
+import { ExerciseCard } from './ExerciseCard';
 import './LessonDetail.css';
 
 export function LessonDetail({ lessonId, onBack }) {
@@ -25,7 +26,7 @@ export function LessonDetail({ lessonId, onBack }) {
       </div>
       <div className="exercise-list">
         <p className="eyebrow">Comprueba lo que aprendiste</p>
-        {lesson.exercises.map((exercise) => <article className="content-block" key={exercise.id}><h3>{exercise.prompt}</h3>{exercise.exercise_options?.map((option) => <button className="answer-option" type="button" key={option.id}>{option.option_text}</button>)}</article>)}
+        {lesson.exercises.map((exercise) => <ExerciseCard exercise={exercise} key={exercise.id} />)}
       </div>
     </section>
   );

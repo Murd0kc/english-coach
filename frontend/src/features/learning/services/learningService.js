@@ -66,4 +66,31 @@ export async function recordAnswer(exerciseId, answer, isCorrect) {
   });
 
   if (error) throw new Error(`No se pudo guardar la respuesta: ${error.message}`);
+
+  const { data: exercise, error: exerciseError } = await supabase
+    .from('exercises')
+    .select('lesson_id')
+    .eq('id', exerciseId)
+    .single();
+
+  if (exerciseError) throw new Error(`No se pudo identificar la lección: ${exerciseError.message}`);
+
+  const { data: existingProgress } = await supabase
+    .from('user_progress')
+    .select('attempts')
+    .eq('user_id', userData.user.id)
+    .eq('lesson_id', exercise.lesson_id)
+    .maybeSingle();
+
+  const { error: progressError } = await supabase
+    .from('user_progress')
+    .upsert({
+      user_id: userData.user.id,
+      lesson_id: exercise.lesson_id,
+      status: 'in_progress',
+      attempts: (existingProgress?.attempts ?? 0) + 1,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'user_id,lesson_id' });
+
+  if (progressError) throw new Error(`No se pudo guardar el progreso: ${progressError.message}`);
 }

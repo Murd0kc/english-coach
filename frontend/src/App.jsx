@@ -11,6 +11,7 @@ import { DiagnosticPanel } from './features/assessment/components/DiagnosticPane
 import { ContentAdminPanel } from './features/content/components/ContentAdminPanel';
 import { ConversationCoach } from './features/conversation/components/ConversationCoach';
 import { PronunciationCoach } from './features/pronunciation/components/PronunciationCoach';
+import { ConsistencyBadge } from './features/motivation/components/ConsistencyBadge';
 import './App.css';
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
           <span className="brand-mark">EC</span>
           <span>English Coach</span>
         </a>
-        <div className="topbar-actions"><div className="streak">🔥 <strong>4</strong> días</div><AccountMenu email={user.email} /></div>
+        <div className="topbar-actions"><ConsistencyBadge userId={user.id} /><AccountMenu email={user.email} /></div>
       </header>
 
       <section className="hero-panel">

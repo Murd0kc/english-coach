@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { recordAnswer } from '../services/learningService';
 import './ExerciseCard.css';
 
-export function ExerciseCard({ exercise }) {
+export function ExerciseCard({ exercise, onAnswered }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [saveError, setSaveError] = useState('');
 
@@ -11,6 +11,7 @@ export function ExerciseCard({ exercise }) {
     setSaveError('');
     try {
       await recordAnswer(exercise.id, option, option.is_correct);
+      onAnswered?.(exercise.id);
     } catch (error) {
       setSaveError(error.message);
     }

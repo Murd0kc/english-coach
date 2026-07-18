@@ -94,3 +94,18 @@ export async function recordAnswer(exerciseId, answer, isCorrect) {
 
   if (progressError) throw new Error(`No se pudo guardar el progreso: ${progressError.message}`);
 }
+
+export async function completeLesson(lessonId) {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) throw new Error('Necesitas iniciar sesión para completar la lección.');
+
+  const { error } = await supabase.from('user_progress').upsert({
+    user_id: userData.user.id,
+    lesson_id: lessonId,
+    status: 'completed',
+    completed_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }, { onConflict: 'user_id,lesson_id' });
+
+  if (error) throw new Error(`No se pudo completar la lección: ${error.message}`);
+}

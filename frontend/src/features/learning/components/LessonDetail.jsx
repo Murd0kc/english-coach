@@ -1,9 +1,14 @@
+import { useState } from 'react';
+import { completeLesson } from '../services/learningService';
 import { useLesson } from '../hooks/useLesson';
 import { ExerciseCard } from './ExerciseCard';
 import './LessonDetail.css';
 
 export function LessonDetail({ lessonId, onBack }) {
   const { lesson, isLoading, error } = useLesson(lessonId);
+  const [answeredExercises, setAnsweredExercises] = useState(new Set());
+  const [completionMessage, setCompletionMessage] = useState('');
+  const [isCompleting, setIsCompleting] = useState(false);
   if (isLoading) return <section className="lesson-detail"><p>Cargando lección...</p></section>;
   if (error) return <section className="lesson-detail"><button className="text-button" onClick={onBack}>← Volver</button><p role="alert">{error}</p></section>;
   if (!lesson) return null;
@@ -26,7 +31,26 @@ export function LessonDetail({ lessonId, onBack }) {
       </div>
       <div className="exercise-list">
         <p className="eyebrow">Comprueba lo que aprendiste</p>
-        {lesson.exercises.map((exercise) => <ExerciseCard exercise={exercise} key={exercise.id} />)}
+        {lesson.exercises.map((exercise) => <ExerciseCard exercise={exercise} key={exercise.id} onAnswered={(id) => setAnsweredExercises((current) => new Set(current).add(id))} />)}
+        <button
+          className="primary-button"
+          type="button"
+          disabled={isCompleting || answeredExercises.size < lesson.exercises.length}
+          onClick={async () => {
+            setIsCompleting(true);
+            try {
+              await completeLesson(lesson.id);
+              setCompletionMessage('¡Lección completada! Tu progreso ya está guardado.');
+            } catch (completionError) {
+              setCompletionMessage(completionError.message);
+            } finally {
+              setIsCompleting(false);
+            }
+          }}
+        >
+          {isCompleting ? 'Guardando...' : 'Completar lección'}
+        </button>
+        {completionMessage && <p role="status">{completionMessage}</p>}
       </div>
     </section>
   );

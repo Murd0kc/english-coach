@@ -12,10 +12,12 @@ import { ContentAdminPanel } from './features/content/components/ContentAdminPan
 import { ConversationCoach } from './features/conversation/components/ConversationCoach';
 import { PronunciationCoach } from './features/pronunciation/components/PronunciationCoach';
 import { ConsistencyBadge } from './features/motivation/components/ConsistencyBadge';
+import { UnitAssessment } from './features/assessment/components/UnitAssessment';
 import './App.css';
 
 function App() {
   const [selectedLessonId, setSelectedLessonId] = useState(null);
+  const [selectedAssessment, setSelectedAssessment] = useState(null);
   const [progressVersion, setProgressVersion] = useState(0);
   const { user, isLoading } = useAuth();
   const { diagnostic, isLoading: diagnosticLoading, error: diagnosticError, setDiagnostic } = useDiagnostic(user?.id);
@@ -57,7 +59,7 @@ function App() {
       <PronunciationCoach />
       <ContentAdminPanel userId={user.id} />
 
-      {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
+      {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : selectedAssessment ? <UnitAssessment unitId={selectedAssessment.id} unitTitle={selectedAssessment.title} onClose={() => setSelectedAssessment(null)} /> : <LearningPath onSelectLesson={setSelectedLessonId} onStartAssessment={(id, title) => setSelectedAssessment({ id, title })} />}
 
       <nav className="bottom-nav" aria-label="Navegación principal">
         <a className="active" href="#inicio">⌂<span>Inicio</span></a>

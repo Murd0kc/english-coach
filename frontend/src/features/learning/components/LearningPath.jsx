@@ -1,6 +1,6 @@
 import { useLearningPath } from '../hooks/useLearningPath';
 
-export function LearningPath({ onSelectLesson }) {
+export function LearningPath({ onSelectLesson, onStartAssessment }) {
   const { units, isLoading, error } = useLearningPath();
 
   if (isLoading) {
@@ -27,6 +27,7 @@ export function LearningPath({ onSelectLesson }) {
             </small>
             <h3>{unit.title}</h3>
             <p>{unit.objective}</p>
+            <button className="secondary-button unit-assessment-button" type="button" onClick={() => onStartAssessment(unit.id, unit.title)}>Evaluar unidad</button>
             <div className="lesson-list">
               {unit.lessons?.map((lesson, index) => (
                 <button className="lesson-row" type="button" key={lesson.id} onClick={() => onSelectLesson(lesson.id)}>

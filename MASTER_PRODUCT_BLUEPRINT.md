@@ -201,6 +201,31 @@ Frontend web responsive
 
 Las lecciones, ejercicios y progreso deben ser datos administrables; no deben quedar quemados en HTML o JavaScript.
 
+### Arquitectura de código
+
+El frontend debe estar modularizado por dominio y responsabilidad. No se deben crear archivos monolíticos ni mezclar interfaz, consultas a Supabase, lógica de negocio y configuración.
+
+```text
+src/
+├── app/
+├── components/
+├── features/
+│   ├── auth/
+│   ├── lessons/
+│   ├── exercises/
+│   ├── progress/
+│   ├── review/
+│   ├── pronunciation/
+│   └── conversation/
+├── services/
+├── lib/
+├── hooks/
+├── types/
+└── styles/
+```
+
+La aplicación debe priorizar componentes pequeños, reutilización, carga diferida, consultas eficientes, optimización multimedia, pruebas de flujos críticos y separación clara entre contenido, datos, lógica e interfaz.
+
 ## 17. MVP
 
 El MVP incluirá:

@@ -216,6 +216,48 @@ Cada lección debe responder claramente:
 
 Si una función o contenido no mejora la comprensión, la producción, la confianza o la constancia del estudiante, debe revisarse antes de incluirse.
 
+## 16. Arquitectura y calidad de código
+
+La aplicación debe construirse con prácticas profesionales de desarrollo moderno:
+
+- Separar presentación, lógica de negocio, acceso a datos y configuración.
+- Dividir la interfaz en componentes pequeños, reutilizables y fáciles de probar.
+- Separar cada módulo funcional en sus propios archivos y carpetas.
+- Evitar archivos monolíticos y componentes con demasiadas responsabilidades.
+- Mantener las lecciones y ejercicios fuera del código de la interfaz.
+- Usar servicios o repositorios para comunicarse con Supabase.
+- Centralizar tipos, validaciones, constantes y configuración.
+- Cargar funciones pesadas de forma diferida cuando sea necesario.
+- Optimizar audios, imágenes, JavaScript y consultas a la base de datos.
+- Evitar duplicación de código.
+- Aplicar nombres claros y consistentes.
+- Mantener las variables secretas fuera del frontend y del repositorio.
+- Añadir pruebas para los flujos críticos.
+- Diseñar la arquitectura para que pueda crecer sin reescribir toda la aplicación.
+
+### Organización recomendada
+
+```text
+src/
+├── app/             # Arranque, rutas y proveedores
+├── components/      # Componentes visuales reutilizables
+├── features/        # Módulos por funcionalidad
+│   ├── auth/
+│   ├── lessons/
+│   ├── exercises/
+│   ├── progress/
+│   ├── review/
+│   ├── pronunciation/
+│   └── conversation/
+├── services/        # Supabase, IA, audio y APIs
+├── lib/             # Clientes y utilidades compartidas
+├── hooks/           # Hooks reutilizables
+├── types/           # Tipos y contratos
+└── styles/          # Estilos globales y tokens visuales
+```
+
+Cada módulo debe poder evolucionar y probarse con el menor impacto posible en los demás módulos.
+
 ## 15. Motivación, dinamismo y retención
 
 English Coach no debe sentirse como una lista repetitiva de ejercicios. La experiencia debe ser dinámica, variada y emocionalmente motivadora.

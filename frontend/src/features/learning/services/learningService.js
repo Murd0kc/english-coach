@@ -93,6 +93,17 @@ export async function recordAnswer(exerciseId, answer, isCorrect) {
     }, { onConflict: 'user_id,lesson_id' });
 
   if (progressError) throw new Error(`No se pudo guardar el progreso: ${progressError.message}`);
+
+  if (!isCorrect) {
+    await supabase.from('review_cards').insert({
+      user_id: userData.user.id,
+      source_type: 'exercise',
+      source_id: exerciseId,
+      front_content: { prompt: answer.option_text },
+      back_content: { explanation: 'Revisa la expresión y vuelve a intentarlo en otro contexto.' },
+      next_review_at: new Date().toISOString(),
+    });
+  }
 }
 
 export async function completeLesson(lessonId) {

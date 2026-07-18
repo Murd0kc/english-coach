@@ -5,6 +5,7 @@ import { LearningPath } from './features/learning/components/LearningPath';
 import { LessonDetail } from './features/learning/components/LessonDetail';
 import { ProgressSummary } from './features/progress/components/ProgressSummary';
 import { AccountMenu } from './features/auth/components/AccountMenu';
+import { ReviewSummary } from './features/review/components/ReviewSummary';
 import './App.css';
 
 function App() {
@@ -41,6 +42,8 @@ function App() {
       <section className="progress-card">
         <ProgressSummary key={progressVersion} />
       </section>
+
+      <ReviewSummary />
 
       {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
 

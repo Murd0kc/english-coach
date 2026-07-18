@@ -1,0 +1,1 @@
+.analytics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.analytics-grid div{display:grid;gap:3px;padding:12px;border-radius:13px;background:#f7f9fd}.analytics-grid strong{font-size:21px;color:#315cce}.analytics-grid small{color:#7a879a;font-size:11px}@media(max-width:650px){.analytics-grid strong{font-size:18px}}

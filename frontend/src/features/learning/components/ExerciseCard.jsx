@@ -1,8 +1,20 @@
 import { useState } from 'react';
+import { recordAnswer } from '../services/learningService';
 import './ExerciseCard.css';
 
 export function ExerciseCard({ exercise }) {
   const [selectedOption, setSelectedOption] = useState(null);
+  const [saveError, setSaveError] = useState('');
+
+  async function handleSelect(option) {
+    setSelectedOption(option);
+    setSaveError('');
+    try {
+      await recordAnswer(exercise.id, option, option.is_correct);
+    } catch (error) {
+      setSaveError(error.message);
+    }
+  }
 
   return (
     <article className="content-block exercise-card">
@@ -15,7 +27,7 @@ export function ExerciseCard({ exercise }) {
         ].filter(Boolean).join(' ');
 
         return (
-          <button className={className} type="button" key={option.id} onClick={() => setSelectedOption(option)}>
+          <button className={className} type="button" key={option.id} onClick={() => handleSelect(option)}>
             {option.option_text}
           </button>
         );
@@ -25,6 +37,7 @@ export function ExerciseCard({ exercise }) {
           {selectedOption.is_correct ? '¡Correcto! Muy bien.' : 'Casi. Revisa el diálogo e inténtalo de nuevo.'}
         </p>
       )}
+      {saveError && <p className="exercise-feedback error">{saveError}</p>}
     </article>
   );
 }

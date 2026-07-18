@@ -53,3 +53,17 @@ export async function getLessonById(lessonId) {
     exercises: [...(data.exercises ?? [])].sort((a, b) => a.sort_order - b.sort_order),
   };
 }
+
+export async function recordAnswer(exerciseId, answer, isCorrect) {
+  const { data: userData, error: userError } = await supabase.auth.getUser();
+  if (userError || !userData.user) throw new Error('Necesitas iniciar sesión para guardar tu respuesta.');
+
+  const { error } = await supabase.from('user_answers').insert({
+    user_id: userData.user.id,
+    exercise_id: exerciseId,
+    answer: { selected_option_id: answer.id, selected_text: answer.option_text },
+    is_correct: isCorrect,
+  });
+
+  if (error) throw new Error(`No se pudo guardar la respuesta: ${error.message}`);
+}

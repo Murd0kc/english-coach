@@ -1,0 +1,217 @@
+# English Coach — Requisitos permanentes del producto
+
+Este documento es la fuente principal de verdad para diseñar, desarrollar y revisar English Coach. Cualquier nueva función, lección, tabla o flujo debe respetar estos requisitos.
+
+## 1. Propósito
+
+English Coach es una aplicación para enseñar inglés a personas nativas de habla hispana. Debe ayudar al estudiante a comprender, pensar y comunicarse en inglés, reduciendo la dependencia de la traducción literal.
+
+## 2. Estándar internacional
+
+El currículo debe alinearse con el Marco Común Europeo de Referencia para las Lenguas (MCER/CEFR):
+
+- **A1 — Acceso:** frases básicas y necesidades cotidianas.
+- **A2 — Básico:** comunicación sencilla en situaciones previsibles.
+- **B1 — Intermedio:** conversación independiente sobre experiencias y opiniones.
+- **B2 — Intermedio alto:** debates, textos complejos y comunicación profesional.
+- **C1 — Avanzado:** comunicación fluida, precisa y con matices.
+- **C2 — Dominio:** comprensión y expresión prácticamente completas.
+
+La aplicación debe evaluar el nivel general y también el nivel por habilidad.
+
+Ejemplo:
+
+```text
+Nivel general: B1
+Escucha: B2
+Lectura: B1
+Gramática: A2
+Pronunciación: B1
+Conversación: B1
+```
+
+## 3. Usuarios
+
+La app debe servir tanto para:
+
+- Personas que empiezan desde cero.
+- Personas que ya estudiaron inglés.
+- Usuarios que necesitan inglés para trabajar.
+- Usuarios que lo necesitan para viajar, estudiar o conversar.
+
+La prueba inicial debe crear una ruta personalizada sin obligar al usuario a repetir contenidos que ya domina.
+
+## 4. Habilidades obligatorias
+
+Todo el currículo debe desarrollar:
+
+- Comprensión auditiva.
+- Pronunciación.
+- Conversación.
+- Vocabulario.
+- Gramática aplicada.
+- Comprensión lectora.
+- Escritura.
+- Fluidez y confianza.
+
+## 5. Dificultades de hispanohablantes
+
+El contenido debe abordar de forma explícita:
+
+- Sonidos /th/, /v/, /b/, /r/ y /w/.
+- Acentuación, ritmo y entonación.
+- Orden de palabras.
+- Artículos y preposiciones.
+- Tiempos verbales.
+- Verbos irregulares.
+- Phrasal verbs.
+- Falsos amigos.
+- Traducciones literales.
+- Diferencias entre inglés formal, informal y conversacional.
+- Diferencias entre *make/do*, *say/tell*, *since/for*, entre otras.
+
+Las correcciones deben explicar la diferencia entre español e inglés con ejemplos claros y útiles.
+
+## 6. Metodología
+
+La metodología debe combinar:
+
+- Aprendizaje contextual.
+- Repetición espaciada.
+- Recuperación activa.
+- Práctica deliberada.
+- Exposición comprensible.
+- Producción oral y escrita.
+- Retroalimentación personalizada.
+- Gamificación moderada.
+- Adaptación mediante inteligencia artificial.
+
+Cada lección debe seguir este ciclo:
+
+```text
+Situación real
+→ Comprensión
+→ Frases y vocabulario
+→ Gramática aplicada
+→ Pronunciación
+→ Práctica guiada
+→ Producción
+→ Corrección
+→ Repaso
+```
+
+## 7. Estructura de una unidad
+
+Cada unidad debe incluir:
+
+1. Objetivo comunicativo.
+2. Situación real.
+3. Diálogo principal.
+4. Vocabulario contextual.
+5. Gramática aplicada.
+6. Pronunciación.
+7. Escucha.
+8. Lectura.
+9. Escritura.
+10. Conversación con IA.
+11. Repaso personalizado.
+12. Evaluación de dominio.
+
+Las lecciones normales deben durar aproximadamente 8–15 minutos.
+
+## 8. Contenido y ejercicios
+
+Debe incluir:
+
+- Diálogos cotidianos.
+- Audios lentos y naturales.
+- Diferentes voces y acentos progresivamente.
+- Dictados.
+- Selección múltiple.
+- Completar frases.
+- Ordenar palabras.
+- Pares mínimos de pronunciación.
+- Lectura en voz alta.
+- Mensajes, correos, menús y anuncios.
+- Escritura contextual.
+- Reformulación de traducciones literales.
+- Role-play con inteligencia artificial.
+
+No se deben crear ejercicios aislados sin un objetivo comunicativo.
+
+## 9. Evaluación y progreso
+
+La evaluación debe incluir:
+
+- Prueba de nivel adaptativa.
+- Diagnóstico por habilidad.
+- Evaluación semanal.
+- Evaluación mensual.
+- Evaluación al terminar cada unidad.
+- Evaluación al terminar cada nivel CEFR.
+- Tareas comunicativas reales.
+
+El usuario debe demostrar comprensión y producción antes de dominar una unidad.
+
+## 10. Inteligencia artificial
+
+La IA debe funcionar como:
+
+- Tutor personalizado.
+- Compañero de conversación.
+- Corrector de escritura.
+- Analizador de errores.
+- Generador de ejemplos.
+- Adaptador de dificultad.
+- Recomendador de repasos.
+
+La IA no debe inventar productos, reglas o respuestas. Las correcciones deben ser claras, breves y apropiadas al nivel.
+
+## 11. Motivación
+
+La experiencia debe fomentar constancia mediante:
+
+- Lecciones cortas.
+- Objetivos diarios alcanzables.
+- Progreso visible.
+- Rachas flexibles.
+- Misiones semanales.
+- Historias y personajes recurrentes.
+- Recompensas por corregir errores y hablar.
+- Modo de práctica sin presión.
+
+La gamificación nunca debe sustituir el aprendizaje real.
+
+## 12. Arquitectura del producto
+
+La interfaz, el contenido y el progreso deben estar separados:
+
+```text
+Interfaz
+→ API y lógica
+→ Base de datos
+→ Contenido educativo
+→ IA y servicios multimedia
+```
+
+Las lecciones no deben quedar quemadas en HTML o JavaScript. Deben ser administrables desde la base de datos o un panel de contenidos.
+
+## 13. Calidad
+
+Cada unidad debe ser revisada por:
+
+- Especialista pedagógico.
+- Profesor de inglés.
+- Lingüista español-inglés.
+- Revisor de naturalidad.
+- Revisor técnico.
+
+Se debe medir retención, avance por habilidad, reducción de errores, tiempo hablado, comprensión y capacidad de completar situaciones reales.
+
+## 14. Principio de producto
+
+Cada lección debe responder claramente:
+
+> ¿Qué podrá hacer el estudiante en inglés después de completarla?
+
+Si una función o contenido no mejora la comprensión, la producción, la confianza o la constancia del estudiante, debe revisarse antes de incluirse.

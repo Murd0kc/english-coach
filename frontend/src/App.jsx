@@ -15,6 +15,7 @@ import { ConsistencyBadge } from './features/motivation/components/ConsistencyBa
 import { UnitAssessment } from './features/assessment/components/UnitAssessment';
 import { SkillProfile } from './features/progress/components/SkillProfile';
 import { ContentAnalyticsPanel } from './features/content/components/ContentAnalyticsPanel';
+import { RecommendationPanel } from './features/learning/components/RecommendationPanel';
 import './App.css';
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <ProgressSummary key={progressVersion} />
       </section>
       <SkillProfile diagnostic={diagnostic} />
+      <RecommendationPanel diagnostic={diagnostic} onSelectLesson={setSelectedLessonId} />
 
       <ReviewSummary />
       <ConversationCoach levelCode={diagnostic?.overall_level ?? 'A1'} />

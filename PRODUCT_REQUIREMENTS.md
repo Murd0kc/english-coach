@@ -215,3 +215,93 @@ Cada lección debe responder claramente:
 > ¿Qué podrá hacer el estudiante en inglés después de completarla?
 
 Si una función o contenido no mejora la comprensión, la producción, la confianza o la constancia del estudiante, debe revisarse antes de incluirse.
+
+## 15. Motivación, dinamismo y retención
+
+English Coach no debe sentirse como una lista repetitiva de ejercicios. La experiencia debe ser dinámica, variada y emocionalmente motivadora.
+
+### Principios obligatorios
+
+- Las actividades deben variar en formato, contexto y nivel de interacción.
+- Cada sesión debe tener un objetivo comunicativo claro.
+- El estudiante debe percibir avances reales y visibles.
+- La gamificación debe premiar aprendizaje real, no solamente tiempo dentro de la app.
+- Las lecciones deben evitar la repetición mecánica y sin contexto.
+- El estudiante debe poder equivocarse sin sentirse castigado.
+- La aplicación debe adaptarse a usuarios que empiezan desde cero y a usuarios avanzados.
+
+### Variedad de experiencias
+
+El producto debe combinar progresivamente:
+
+- Diálogos.
+- Historias y personajes recurrentes.
+- Retos diarios y semanales.
+- Juegos lingüísticos.
+- Imágenes y situaciones visuales.
+- Audios y videos breves.
+- Conversaciones con IA.
+- Desafíos de pronunciación.
+- Misiones prácticas.
+- Lecturas, mensajes y correos reales.
+
+### Tipos de sesión
+
+El usuario debe poder elegir o recibir una recomendación adaptada:
+
+- Práctica rápida de 5 minutos.
+- Lección completa de 8–15 minutos.
+- Repaso inteligente.
+- Conversación libre.
+- Desafío de pronunciación.
+- Reto semanal.
+- Evaluación de progreso.
+
+### Narrativa y contexto
+
+Siempre que sea apropiado, las unidades deben conectarse mediante historias, personajes y situaciones recurrentes. Esto ayuda a crear continuidad y una razón emocional para regresar.
+
+### Adaptación mediante IA
+
+La IA debe ajustar la experiencia según:
+
+- Rendimiento.
+- Tiempo disponible.
+- Intereses.
+- Errores frecuentes.
+- Nivel de confianza.
+- Tiempo desde la última sesión.
+- Señales de frustración o aburrimiento.
+
+La IA puede recomendar una sesión más corta, cambiar el tipo de actividad, variar el contexto o reducir temporalmente la dificultad.
+
+### Recuperación de motivación
+
+Si un usuario abandona, la app debe ofrecer una reentrada sencilla:
+
+- Repaso corto.
+- Lección relacionada con sus intereses.
+- Recuperación flexible de la racha.
+- Mensaje útil y no culpabilizante.
+- Reto pequeño con alta probabilidad de éxito.
+
+### Métricas de motivación
+
+Se deben medir:
+
+- Retención a 1, 7 y 30 días.
+- Lecciones iniciadas y terminadas.
+- Tiempo hablado.
+- Regreso después de una pausa.
+- Abandono dentro de una lección.
+- Repetición voluntaria de actividades.
+- Progreso percibido por el usuario.
+- Dificultad y satisfacción reportadas.
+
+### Criterio de calidad motivacional
+
+Cada unidad debe responder también:
+
+> ¿Por qué querrá el estudiante volver mañana?
+
+Si una actividad es correcta desde el punto de vista académico pero repetitiva, confusa o desmotivadora, debe rediseñarse.

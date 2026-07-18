@@ -14,6 +14,7 @@ import { PronunciationCoach } from './features/pronunciation/components/Pronunci
 import { ConsistencyBadge } from './features/motivation/components/ConsistencyBadge';
 import { UnitAssessment } from './features/assessment/components/UnitAssessment';
 import { SkillProfile } from './features/progress/components/SkillProfile';
+import { ContentAnalyticsPanel } from './features/content/components/ContentAnalyticsPanel';
 import './App.css';
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
       <ConversationCoach levelCode={diagnostic?.overall_level ?? 'A1'} />
       <PronunciationCoach />
       <ContentAdminPanel userId={user.id} />
+      <ContentAnalyticsPanel />
 
       {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : selectedAssessment ? <UnitAssessment unitId={selectedAssessment.id} unitTitle={selectedAssessment.title} onClose={() => setSelectedAssessment(null)} /> : <LearningPath onSelectLesson={setSelectedLessonId} onStartAssessment={(id, title) => setSelectedAssessment({ id, title })} />}
 

@@ -27,6 +27,18 @@ export function LearningPath() {
             </small>
             <h3>{unit.title}</h3>
             <p>{unit.objective}</p>
+            <div className="lesson-list">
+              {unit.lessons?.map((lesson, index) => (
+                <button className="lesson-row" type="button" key={lesson.id}>
+                  <span className="lesson-number">{index + 1}</span>
+                  <span className="lesson-details">
+                    <strong>{lesson.title}</strong>
+                    <small>{lesson.duration_minutes} min · {lesson.description}</small>
+                  </span>
+                  <span className="lesson-arrow">→</span>
+                </button>
+              ))}
+            </div>
           </article>
         ))}
       </div>

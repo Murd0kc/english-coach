@@ -13,6 +13,14 @@ export async function getLearningPath() {
         code,
         name,
         sort_order
+      ),
+      lessons (
+        id,
+        title,
+        description,
+        duration_minutes,
+        sort_order,
+        is_published
       )
     `)
     .order('sort_order', { ascending: true });
@@ -21,5 +29,10 @@ export async function getLearningPath() {
     throw new Error(`No se pudo cargar la ruta: ${error.message}`);
   }
 
-  return data;
+  return data.map((unit) => ({
+    ...unit,
+    lessons: (unit.lessons ?? [])
+      .filter((lesson) => lesson.is_published)
+      .sort((a, b) => a.sort_order - b.sort_order),
+  }));
 }

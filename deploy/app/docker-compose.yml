@@ -5,6 +5,7 @@ services:
       args:
         VITE_SUPABASE_URL: ${VITE_SUPABASE_URL}
         VITE_SUPABASE_PUBLISHABLE_KEY: ${VITE_SUPABASE_PUBLISHABLE_KEY}
+        VITE_CONVERSATION_FUNCTION_URL: ${VITE_CONVERSATION_FUNCTION_URL}
     restart: unless-stopped
     networks:
       - web

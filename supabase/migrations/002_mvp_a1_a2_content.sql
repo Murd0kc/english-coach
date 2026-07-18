@@ -35,7 +35,7 @@ begin
     (lesson_id, 'writing', '{"prompt":"Write three sentences about your weekday routine. Use get up, start and finish."}'::jsonb, 6)
   on conflict do nothing;
   insert into public.exercises (id, lesson_id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order)
-  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Choose the correct question.', 'Use do with you.', 'What time do you get up?', 1, 1) returning id into exercise_id;
+  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Choose the correct question.', 'Use do with you.', to_jsonb('What time do you get up?'::text), 1, 1) returning id into exercise_id;
   insert into public.exercise_options (exercise_id, option_text, is_correct, sort_order) values
     (exercise_id, 'What time do you get up?', true, 1), (exercise_id, 'What time does you get up?', false, 2), (exercise_id, 'What time you do get up?', false, 3);
 
@@ -60,7 +60,7 @@ begin
     (lesson_id, 'writing', '{"prompt":"Write a two-line message telling a visitor how to get to a place near you."}'::jsonb, 6)
   on conflict do nothing;
   insert into public.exercises (id, lesson_id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order)
-  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Complete: Go ___ and turn left.', 'Go straight is the natural phrase for following the same road.', 'straight', 1, 1) returning id into exercise_id;
+  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Complete: Go ___ and turn left.', 'Go straight is the natural phrase for following the same road.', to_jsonb('straight'::text), 1, 1) returning id into exercise_id;
   insert into public.exercise_options (exercise_id, option_text, is_correct, sort_order) values
     (exercise_id, 'straight', true, 1), (exercise_id, 'direct', false, 2), (exercise_id, 'rightly', false, 3);
 
@@ -85,7 +85,7 @@ begin
     (lesson_id, 'writing', '{"prompt":"Write a short hotel message asking about breakfast and checkout."}'::jsonb, 6)
   on conflict do nothing;
   insert into public.exercises (id, lesson_id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order)
-  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Choose the polite request.', 'Could I...? is a useful polite structure for travel.', 'Could I see your passport, please?', 2, 1) returning id into exercise_id;
+  values (gen_random_uuid(), lesson_id, 'multiple_choice', 'Choose the polite request.', 'Could I...? is a useful polite structure for travel.', to_jsonb('Could I see your passport, please?'::text), 2, 1) returning id into exercise_id;
   insert into public.exercise_options (exercise_id, option_text, is_correct, sort_order) values
     (exercise_id, 'Could I see your passport, please?', true, 1), (exercise_id, 'I see passport now.', false, 2), (exercise_id, 'Give me passport.', false, 3);
 end $$;

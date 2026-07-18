@@ -50,7 +50,7 @@ begin
         (lesson_id, 'writing', jsonb_build_object('prompt', 'Write a response of 80–120 words using the target expressions.'), 4);
     end if;
     if not exists (select 1 from public.exercises e where e.lesson_id = cefr_content.lesson_id) then
-      insert into public.exercises (lesson_id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order) values (lesson_id, 'multiple_choice', 'Choose the most appropriate connector: The plan is ambitious; ___, it is achievable.', 'However introduces a contrast between two ideas.', 'however', 3, 1) returning id into exercise_id;
+      insert into public.exercises (lesson_id, exercise_type, prompt, explanation, correct_answer, difficulty, sort_order) values (lesson_id, 'multiple_choice', 'Choose the most appropriate connector: The plan is ambitious; ___, it is achievable.', 'However introduces a contrast between two ideas.', to_jsonb('however'::text), 3, 1) returning id into exercise_id;
       insert into public.exercise_options (exercise_id, option_text, is_correct, sort_order) values (exercise_id, 'however', true, 1), (exercise_id, 'because', false, 2), (exercise_id, 'unless', false, 3);
     end if;
   end loop;

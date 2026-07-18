@@ -4,10 +4,12 @@ import { useAuth } from './features/auth/hooks/useAuth';
 import { LearningPath } from './features/learning/components/LearningPath';
 import { LessonDetail } from './features/learning/components/LessonDetail';
 import { ProgressSummary } from './features/progress/components/ProgressSummary';
+import { AccountMenu } from './features/auth/components/AccountMenu';
 import './App.css';
 
 function App() {
   const [selectedLessonId, setSelectedLessonId] = useState(null);
+  const [progressVersion, setProgressVersion] = useState(0);
   const { user, isLoading } = useAuth();
 
   if (isLoading) return <main className="app-shell"><p>Cargando tu cuenta...</p></main>;
@@ -19,7 +21,7 @@ function App() {
           <span className="brand-mark">EC</span>
           <span>English Coach</span>
         </a>
-        <div className="streak">🔥 <strong>4</strong> días</div>
+        <div className="topbar-actions"><div className="streak">🔥 <strong>4</strong> días</div><AccountMenu email={user.email} /></div>
       </header>
 
       <section className="hero-panel">
@@ -37,10 +39,10 @@ function App() {
       </section>
 
       <section className="progress-card">
-        <ProgressSummary />
+        <ProgressSummary key={progressVersion} />
       </section>
 
-      {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
+      {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
 
       <nav className="bottom-nav" aria-label="Navegación principal">
         <a className="active" href="#inicio">⌂<span>Inicio</span></a>

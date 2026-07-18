@@ -4,7 +4,7 @@ import { useLesson } from '../hooks/useLesson';
 import { ExerciseCard } from './ExerciseCard';
 import './LessonDetail.css';
 
-export function LessonDetail({ lessonId, onBack }) {
+export function LessonDetail({ lessonId, onBack, onCompleted }) {
   const { lesson, isLoading, error } = useLesson(lessonId);
   const [answeredExercises, setAnsweredExercises] = useState(new Set());
   const [completionMessage, setCompletionMessage] = useState('');
@@ -41,6 +41,7 @@ export function LessonDetail({ lessonId, onBack }) {
             try {
               await completeLesson(lesson.id);
               setCompletionMessage('¡Lección completada! Tu progreso ya está guardado.');
+              onCompleted?.();
             } catch (completionError) {
               setCompletionMessage(completionError.message);
             } finally {

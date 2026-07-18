@@ -9,8 +9,6 @@ export function useLesson(lessonId) {
   useEffect(() => {
     if (!lessonId) return undefined;
     let isMounted = true;
-    setIsLoading(true);
-    setError('');
     getLessonById(lessonId)
       .then((data) => isMounted && setLesson(data))
       .catch((err) => isMounted && setError(err.message))

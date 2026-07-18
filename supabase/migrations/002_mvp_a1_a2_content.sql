@@ -1,4 +1,5 @@
 do $$
+<<mvp_content>>
 declare
   a1_id uuid;
   a2_id uuid;
@@ -19,7 +20,7 @@ begin
     returning id into unit_id;
   end if;
 
-  select l.id into lesson_id from public.lessons l where l.unit_id = unit_id and l.title = 'Hablar de tu rutina' limit 1;
+  select l.id into lesson_id from public.lessons l where l.unit_id = mvp_content.unit_id and l.title = 'Hablar de tu rutina' limit 1;
   if lesson_id is null then
     insert into public.lessons (id, unit_id, title, description, duration_minutes, sort_order, is_published)
     values (gen_random_uuid(), unit_id, 'Hablar de tu rutina', 'Describe una mañana normal usando el presente simple.', 10, 1, true)
@@ -44,7 +45,7 @@ begin
     values (gen_random_uuid(), a1_id, 'Moverte por la ciudad', 'Pedir y entender indicaciones sencillas en inglés.', 'Ciudad y transporte', 30)
     returning id into unit_id;
   end if;
-  select l.id into lesson_id from public.lessons l where l.unit_id = unit_id and l.title = 'Pedir indicaciones' limit 1;
+  select l.id into lesson_id from public.lessons l where l.unit_id = mvp_content.unit_id and l.title = 'Pedir indicaciones' limit 1;
   if lesson_id is null then
     insert into public.lessons (id, unit_id, title, description, duration_minutes, sort_order, is_published)
     values (gen_random_uuid(), unit_id, 'Pedir indicaciones', 'Pregunta cómo llegar a un lugar y confirma la información.', 10, 1, true)
@@ -69,7 +70,7 @@ begin
     values (gen_random_uuid(), a2_id, 'Inglés para viajar', 'Resolver situaciones habituales en un hotel y durante un viaje.', 'Viajes', 10)
     returning id into unit_id;
   end if;
-  select l.id into lesson_id from public.lessons l where l.unit_id = unit_id and l.title = 'Registrarte en un hotel' limit 1;
+  select l.id into lesson_id from public.lessons l where l.unit_id = mvp_content.unit_id and l.title = 'Registrarte en un hotel' limit 1;
   if lesson_id is null then
     insert into public.lessons (id, unit_id, title, description, duration_minutes, sort_order, is_published)
     values (gen_random_uuid(), unit_id, 'Registrarte en un hotel', 'Haz check-in, confirma una reserva y pide información útil.', 12, 1, true)

@@ -1,0 +1,45 @@
+{
+  "name": "English Coach - Daily Reminder Preparation",
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "minutes", "minutesInterval": 15 }] } },
+      "id": "schedule-reminders",
+      "name": "Every 15 minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/notification_preferences?select=user_id,reminder_time,timezone,weekly_summary&enabled=eq.true",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" }, { "name": "Authorization", "value": "=Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" }] },
+        "options": { "timeout": 15000 }
+      },
+      "id": "fetch-preferences",
+      "name": "Fetch enabled preferences",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst preferences = $input.all();\nconst pad = (value) => String(value).padStart(2, '0');\nconst currentUtc = `${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}`;\nreturn preferences.filter((item) => {\n  const reminder = String(item.json.reminder_time || '').slice(0, 5);\n  // Replace this comparison with Luxon timezone conversion in production.\n  return reminder === currentUtc;\n}).map((item) => ({ json: { ...item.json, subject: 'Tu práctica de inglés te espera', message: 'Una sesión de cinco minutos también cuenta. Abre English Coach y continúa tu ruta.' } }));"
+      },
+      "id": "filter-due-reminders",
+      "name": "Prepare due reminders",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Every 15 minutes": { "main": [[{ "node": "Fetch enabled preferences", "type": "main", "index": 0 }]] },
+    "Fetch enabled preferences": { "main": [[{ "node": "Prepare due reminders", "type": "main", "index": 0 }]] }
+  },
+  "pinData": {},
+  "tags": []
+}

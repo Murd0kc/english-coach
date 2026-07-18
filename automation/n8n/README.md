@@ -2,6 +2,8 @@
 
 Este flujo sigue el patrón `Schedule → consulta → filtrar → entregar → registrar`.
 
+Puedes importar `daily-reminders.workflow.json` en n8n. El flujo prepara los recordatorios; conecta después un nodo de correo con el proveedor SMTP configurado en tu instancia. El workflow está inactivo al importar para permitir validar credenciales y zona horaria primero.
+
 ## Configuración
 
 1. Ejecuta `supabase/migrations/011_notification_preferences.sql`.

@@ -6,15 +6,20 @@ import { LessonDetail } from './features/learning/components/LessonDetail';
 import { ProgressSummary } from './features/progress/components/ProgressSummary';
 import { AccountMenu } from './features/auth/components/AccountMenu';
 import { ReviewSummary } from './features/review/components/ReviewSummary';
+import { useDiagnostic } from './features/assessment/hooks/useDiagnostic';
+import { DiagnosticPanel } from './features/assessment/components/DiagnosticPanel';
 import './App.css';
 
 function App() {
   const [selectedLessonId, setSelectedLessonId] = useState(null);
   const [progressVersion, setProgressVersion] = useState(0);
   const { user, isLoading } = useAuth();
+  const { diagnostic, isLoading: diagnosticLoading, error: diagnosticError, setDiagnostic } = useDiagnostic(user?.id);
 
   if (isLoading) return <main className="app-shell"><p>Cargando tu cuenta...</p></main>;
   if (!user) return <main className="app-shell"><AuthPanel /></main>;
+  if (diagnosticLoading) return <main className="app-shell"><p>Cargando tu ruta personalizada...</p></main>;
+  if (!diagnostic && !diagnosticError) return <main className="app-shell"><DiagnosticPanel userId={user.id} onCompleted={setDiagnostic} /></main>;
   return (
     <main className="app-shell">
       <header className="topbar">

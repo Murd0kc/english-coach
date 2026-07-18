@@ -8,6 +8,7 @@ import { AccountMenu } from './features/auth/components/AccountMenu';
 import { ReviewSummary } from './features/review/components/ReviewSummary';
 import { useDiagnostic } from './features/assessment/hooks/useDiagnostic';
 import { DiagnosticPanel } from './features/assessment/components/DiagnosticPanel';
+import { ContentAdminPanel } from './features/content/components/ContentAdminPanel';
 import './App.css';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
       </section>
 
       <ReviewSummary />
+      <ContentAdminPanel userId={user.id} />
 
       {selectedLessonId ? <LessonDetail lessonId={selectedLessonId} onBack={() => setSelectedLessonId(null)} onCompleted={() => setProgressVersion((value) => value + 1)} /> : <LearningPath onSelectLesson={setSelectedLessonId} />}
 
